@@ -1,0 +1,61 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/users/sign_in":
+    post:
+      summary: User sign_in
+      tags:
+      - Sign In
+      parameters: []
+      responses:
+        '200':
+          description: Sign in successfully
+        '404':
+          description: Use Not found
+        '401':
+          description: Wrong credentials
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                password:
+                  type: string
+                username:
+                  type: string
+              required:
+              - username
+              - password
+  "/api/v1/users/sign_up":
+    post:
+      summary: User sign_up
+      tags:
+      - Sign Up
+      parameters: []
+      responses:
+        '201':
+          description: user created
+        '400':
+          description: invalid params in request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+              required:
+              - username
+              - password
+servers:
+- url: http://{defaultHost}
+  variables:
+    defaultHost:
+      default: localhost:3000
